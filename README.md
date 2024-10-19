@@ -61,23 +61,24 @@ C$50 Expense Tracker is a web application that allows users to track their expen
    pip install -r requirements.txt
    ```
 
-5. **Set up the database:**
-
-   ```sh
-   flask db init
-   flask db migrate -m "Initial migration."
-   flask db upgrade
-   ```
-
-6. **Run the application:**
+5. **Run the application:**
 
    ```sh
    flask run
    ```
 
-7. **Open your web browser and navigate to:**
+6. **Open your web browser and navigate to:**
+
    ```
    http://127.0.0.1:5000
+   ```
+
+7. **Manipulate the database:**
+
+   Click `Ctrl + C` to exit the virtual environment, and then run:
+
+   ```sh
+   .\sqlite3.exe project.db
    ```
 
 ## Usage
