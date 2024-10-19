@@ -118,11 +118,11 @@ def expenses():
             return jsonify({"status":"error"})
     else:
         start_date,end_date=thirty_days_Counter()
-        expenses = db.execute("SELECT * FROM expenses WHERE date(date) BETWEEN ? AND ?", start_date, end_date)  
+        expenses = db.execute("SELECT * FROM expenses WHERE date(date) BETWEEN ? AND ?", start_date, end_date)
         income = db.execute("SELECT sum(amount) FROM incomes WHERE date(date) BETWEEN ? AND ?", start_date, end_date)
         income = income[0]['sum(amount)']
         return render_template("expenses.html",expenses=expenses,income=income)
-    
+
 @app.route("/expenses/edit", methods=["PUT"])
 def edit_expense():
     try:
@@ -135,8 +135,8 @@ def edit_expense():
      db.execute("UPDATE expenses SET amount = ?, category = ?, description = ?, date = ? WHERE id = ?", amount, category, description, date, id)
      return jsonify({"status":200})
     except:
-     return jsonify({"status":"error"}) 
-    
+     return jsonify({"status":"error"})
+
 @app.route("/incomes", methods=["GET", "POST"])
 def income():
     if request.method == "POST":
@@ -151,7 +151,7 @@ def income():
         incomes = db.execute("SELECT * ,strftime('%Y-%m-%d',date) as date FROM incomes WHERE date(date) BETWEEN ? AND ?", start_date, end_date)
         total_income = db.execute("SELECT sum(amount) FROM incomes WHERE date(date) BETWEEN ? AND ?", start_date, end_date)
         return render_template("incomes.html", incomes=incomes,total=total_income[0]['sum(amount)'])
-    
+
 @app.route("/incomes", methods=["DELETE"])
 def delete_income():
     try:
@@ -160,7 +160,7 @@ def delete_income():
         return jsonify({"status":200})
     except:
         return jsonify({"status":"error"})
-    
+
 @app.route("/incomes/edit", methods=["PUT"])
 def edit_income():
     try:
@@ -173,21 +173,21 @@ def edit_income():
         db.execute("UPDATE incomes SET amount = ?, category = ?, description = ?, date = ? WHERE id = ?", amount, category, description, date, id)
         return jsonify({"status":200})
     except:
-        return jsonify({"status":"error"})    
+        return jsonify({"status":"error"})
 
 @app.route("/incomes/edit", methods=["GET"])
 def redirect_edit_income():
     id = request.args.get("id")
     income = db.execute("SELECT * , strftime('%Y-%m-%d',date) as date  FROM incomes WHERE id = ?", id)
-    return render_template("edit_income.html", income=income[0])    
-    
+    return render_template("edit_income.html", income=income[0])
+
 @app.route("/income/new", methods=["GET", "POST"])
 def new_income():
     return render_template("new_income.html")
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
-    return render_template("dashboard.html")
+    return render_template("dashBoard.html")
 
 @app.route("/expenses/bieChart", methods=["GET"])
 def pieChart():
@@ -224,4 +224,4 @@ def redirect_edit():
     return render_template("edit_expense.html", expense=expense[0])
 
 
-    
+
