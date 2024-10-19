@@ -19,5 +19,9 @@
     "titleBar.inactiveForeground": "#e7e7e799"
   },
   "peacock.color": "#306998",
-  "cSpell.words": ["echarts", "jsonify"]
+  "cSpell.words": [
+    "echarts",
+    "jsonify"
+  ],
+  "gitdoc.enabled": true
 }
