@@ -1,0 +1,61 @@
+{%extends "layout.html"%} {%block title%}Expenses{%endblock%} {%block main%}
+  <script src="../static/expensesFilters.js"></script>
+  <script src="../static/balance.js"></script>
+  <script src="../static/deleteActions.js"></script>
+  <h1>Expenses</h1>
+  <button class="btn btn-primary mb-3" onclick="window.location.href='/expenses/new'">New Expense</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <h4 id="balance" style="text-align: left" class="d-inline-block w-50">Balance: 0</h4>
+        <h4 id="total" style="text-align: left" class="d-inline-block">Income: {{income}}</h4>
+      </div>
+
+      {% include "dateFilter.html" %}
+      <div class="col-sm">
+        <label for="categoryFilter" class="form-label d-inline-block"> Filter by Category </label>
+        <select class="form-select d-inline-block w-50 ml-3" id="categoryFilter" name="categoryFilter">
+          <option value="All">All</option>
+          <option value="Food">Food</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Housing">Housing</option>
+          <option value="Utilities">Utilities</option>
+          <option value="Insurance">Insurance</option>
+          <option value="Medical">Medical</option>
+          <option value="Savings">Savings</option>
+          <option value="Personal">Personal</option>
+          <option value="Recreation">Recreation</option>
+          <option value="Debt">Debt</option>
+          <option value="Miscellaneous">Miscellaneous</option>
+        </select>
+      </div>
+    </div>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="expenseTable">
+        {% for expense in expenses %}
+        <tr>
+          <td>{{expense.date}}</td>
+          <td>{{expense.category}}</td>
+          <td>{{expense.description}}</td>
+          <td>{{expense.amount}}</td>
+          <td>
+            <button class="btn btn-danger" onclick="deleteExpense('{{expense.id}}')">Delete</button>
+            <a href="/expenses/edit?id={{expense.id}}" class="btn btn-warning">Edit</a>
+          </td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    {%endblock%}
+  </div>
+</head>

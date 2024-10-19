@@ -1,0 +1,59 @@
+{%extends "layout.html"%} {% block title %}Incomes{% endblock %} {%block main%}
+<script src="../static/incomeFilters.js"></script>
+<script src="../static/deleteActions.js"></script>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Incomes</h1>
+      <div class="text-center">
+        <a href="/income/new" class="btn btn-primary mb-3">New Income</a>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h3 id="total" style="text-align: left">Total: {{total}}</h3>
+          </div>
+          {% include "dateFilter.html" %}
+          <div class="col-sm">
+            <label for="categoryFilter" class="form-label d-inline"> Filter by Category </label>
+            <select class="form-select d-inline w-50 ml-3" id="categoryFilter" name="categoryFilter">
+              <option value="All">All</option>
+              <option value="Salary">Salary</option>
+              <option value="Business">Business</option>
+              <option value="Investment">Investment</option>
+              <option value="Savings">Savings</option>
+              <option value="Miscellaneous">Miscellaneous</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="incomeTable">
+          {% for income in incomes %}
+          <tr>
+            <td>{{income.date}}</td>
+            <td>{{income.category}}</td>
+            <td>{{income.description}}</td>
+            <td>{{income.amount}}</td>
+            <td>
+              <button class="btn btn-danger" onclick="deleteIncome('{{income.id}}')">Delete</button>
+              <a href="/incomes/edit?id={{income.id}}" class="btn btn-warning">Edit</a>
+            </td>
+          </tr>
+
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{%endblock%}

@@ -1,0 +1,32 @@
+{%extends "layout.html"%} {%block title%}Edit Income{%endblock%} {%block main%}
+<script src="../static/editIncome.js"></script>
+<h1>Edit Income</h1>
+<div class="pl-11 pr-10">
+  <form id="editIncomeForm">
+    <div class="mb-3">
+      <input type="hidden" id="incomeId" name="incomeId" value="{{income.id}}" />
+      <label for="date" class="form-label">Date</label>
+      <input type="date" value="{{income.date}}" class="form-control" id="date" name="date" required />
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <select class="form-select" id="category" name="category" required>
+        <option value="Salary" {% if income.category == "Salary"%}selected{% endif%}>Salary</option>
+        <option value="Business" {% if income.category == "Business"%}selected{% endif%}>Business</option>
+        <option value="Investment" {% if income.category == "Investment"%}selected{% endif%}>Investment</option>
+        <option value="Savings" {% if income.category == "Savings"%}selected{% endif%}>Savings</option>
+        <option value="Miscellaneous" {% if income.category == "Miscellaneous"%}selected{% endif%}>Miscellaneous</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <input type="text" value="{{income.description}}" class="form-control" id="description" name="description" required />
+    </div>
+    <div class="mb-3">
+      <label for="amount" class="form-label">Amount</label>
+      <input type="number" value="{{income.amount}}" class="form-control" id="amount" name="amount" required />
+    </div>
+    <button type="submit" class="btn btn-primary">edit</button>
+  </form>
+</div>
+{%endblock%}

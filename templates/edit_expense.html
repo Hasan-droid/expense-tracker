@@ -1,0 +1,45 @@
+{%extends "layout.html"%} {%block title%}Edit Expense{%endblock%} { {%block main%}
+<script src="../static/editExpense.js"></script>
+<h1>Edit Expense</h1>
+<div class="pl-11 pr-10">
+  <form id="editExpenseFrom">
+      <div class="mb-3">
+      <input type="hidden" id="expenseId" name="expenseId" value="{{expense.id}}" />
+      <label for="date" class="form-label">Date</label>
+      <input type="date" value="{{expense.date}}" class="form-control" id="date" name="date" required />
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <select class="form-select" id="category" name="category" required>
+        <option value="Food" {% if expense.category == "Food"%}selected{% endif%}>Food</option>
+        <option value="Transportation" {% if expense.category == "Transportation"%}selected{% endif%}>Transportation</option>
+        <option value="Housing" {% if expense.category == "Housing"%}selected{% endif%}>Housing</option>
+        <option value="Utilities" {% if expense.category == "Utilities"%}selected{% endif%}>Utilities</option>
+        <option value="Insurance" {% if expense.category == "Insurance"%}selected{% endif%}>Insurance</option>
+        <option value="Medical" {% if expense.category == "Medical"%}selected{% endif%}>Medical</option>
+        <option value="Savings"{% if expense.category == "Savings"%}selected{% endif%}>Savings</option>
+        <option value="Personal"{% if expense.category == "Personal"%}selected{% endif%}>Personal</option>
+        <option value="Recreation" {% if expense.category == "Recreation"%}selected{% endif%}>Recreation</option>
+        <option value="Debt" {% if expense.category == "Debt"%}selected{% endif%}>Debt</option>
+        <option value="Miscellaneous" {% if expense.category == "Miscellaneous"%}selected{% endif%}>Miscellaneous</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <input
+        type="text"
+        value="{{expense.description}}"
+        class="form-control"
+        id="description"
+        name="description"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="amount" class="form-label">Amount</label>
+      <input type="number" value="{{expense.amount}}" class="form-control" id="amount" name="amount" required />
+    </div>
+    <button type="submit" class="btn btn-primary">edit</button>
+  </form>
+</div>
+{%endblock%}
