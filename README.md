@@ -75,11 +75,35 @@ C$50 Expense Tracker is a web application that allows users to track their expen
 
 7. **Manipulate the database:**
 
+   This project has a built-in database `project.db`, so there is no need for any database setup.
    Click `Ctrl + C` to exit the virtual environment, and then run:
 
    ```sh
    .\sqlite3.exe project.db
    ```
+
+## Data Tracking Details
+
+This application tracks monthly expenses and incomes. Here are the details:
+
+1. **Expenses Page:**
+
+   - The income and balance displayed on the expenses page are calculated for the current month.
+   - The first table in expenses listed are filtered to show only those within the current month.
+
+2. **Incomes Page:**
+
+   - The total income displayed on the incomes page is calculated for the current month.
+   - The first table in incomes listed are filtered to show only those within the current month.
+
+3. **Home Page (Bar Chart):**
+
+   - The bar chart on the home page shows the total expenses per month.
+   - The data for the bar chart is aggregated monthly to provide a clear overview of expenses over time.
+
+4. **Overall Tracking (Dashboard):**
+   - The dashboard tracks overall expenses and incomes.
+   - This means that the data displayed on the dashboard is not restricted to any specific time period.
 
 ## Usage
 
