@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const fetchData = await axios.get("/barChart");
   const data = fetchData.data;
-  console.log(data);
   var chartDom = document.getElementById("barChart");
   var myChart = echarts.init(chartDom);
   var option;

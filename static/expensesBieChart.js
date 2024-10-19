@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const fetchData = await axios.get("/expenses/bieChart");
-  console.log(fetchData.data);
   var chartDom = document.getElementById("expensesChart");
   var myChart = echarts.init(chartDom);
   var option;

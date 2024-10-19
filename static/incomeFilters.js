@@ -4,7 +4,6 @@ const generateTable = async () => {
   const tableBody = document.querySelector("#incomeTable");
   const responseData = await axios.get(`/filter/income?date=${dateFilter.value}&category=${categoryFilter.value}`);
   const incomes = responseData.data.income;
-  console.log(incomes);
   tableBody.innerHTML = "";
   incomes.forEach((income) => {
     const tr = document.createElement("tr");

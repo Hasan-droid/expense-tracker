@@ -84,7 +84,6 @@ def filter_income():
 def filter():
     dateFilter=request.args.get('date')
     categoryFilter=request.args.get('category')
-    print(f'categoryFilter: {categoryFilter}')
     start_date,end_date=thirty_days_Counter()
     if categoryFilter == 'All':
         if dateFilter:
@@ -118,7 +117,6 @@ def expenses():
         except:
             return jsonify({"status":"error"})
     else:
-        print("GET")
         start_date,end_date=thirty_days_Counter()
         expenses = db.execute("SELECT * FROM expenses WHERE date(date) BETWEEN ? AND ?", start_date, end_date)  
         income = db.execute("SELECT sum(amount) FROM incomes WHERE date(date) BETWEEN ? AND ?", start_date, end_date)
@@ -128,7 +126,6 @@ def expenses():
 @app.route("/expenses/edit", methods=["PUT"])
 def edit_expense():
     try:
-     print("PUT")
      data=request.get_json()
      id = data.get("id")
      amount = data.get("amount")
@@ -167,7 +164,6 @@ def delete_income():
 @app.route("/incomes/edit", methods=["PUT"])
 def edit_income():
     try:
-        print("PUT")
         data=request.get_json()
         id = data.get("id")
         amount = data.get("amount")
